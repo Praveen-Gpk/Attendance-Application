@@ -1,0 +1,132 @@
+<?php 
+include 'connection.php';
+$da = $_POST["date"];
+$stime = $_POST["start_time"];
+$etime = $_POST["end_time"];
+$clg = $_POST["college"];
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+else {
+  # code...
+  $sql="INSERT into `task`(`date`,`start_time`,`end_time`,`college`) VALUES('$da','$stime', '$etime','$clg');";
+  mysqli_query($conn,$sql);
+  echo '<script>
+  alert("added Succesfully");
+  </script>';
+} 
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Add Task</title>
+  <!-- Favicon -->
+  
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+</head>
+
+<body class="bg-default">
+ <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" >
+      
+    </a>
+
+  </div>
+</nav>
+<!-- Main content -->
+<div class="main-content">
+  <!-- Header -->
+  <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container mt--8 pb-5">
+    <!-- Table -->
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card bg-secondary border-0">
+
+          <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center">
+              <h1 class="text-center"> Enter the Details to update task </h1>
+            </div>
+            <form role="form" action="addtask.php" method="POST">
+              <div class="form-group">
+
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                  </div>
+                  <input type="date" class="form-control" name="date" required>
+                </div>
+
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="college" required placeholder="College Name">
+                </div>
+
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-watch-time"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="start_time" required placeholder="Start time (eg. 09:00 AM)">
+                </div>
+
+                <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-watch-time"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="end_time" required placeholder="End time (eg. 09:00 AM)">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-right">
+                  <input type="Submit" class="btn btn-primary mt-4" value="Add">
+                </div>
+                <div class="col text-left">
+                  <a href="index.html" class="btn btn-primary mt-4">
+                    <span class="btn-inner--text">Back</span>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
